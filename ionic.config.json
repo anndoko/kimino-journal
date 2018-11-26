@@ -1,0 +1,7 @@
+{
+  "name": "kimino-journal",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
