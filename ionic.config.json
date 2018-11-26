@@ -1,7 +1,5 @@
 {
-  "name": "kimino-journal",
-  "integrations": {
-    "cordova": {}
-  },
+  "name": "loginSpike",
+  "integrations": {},
   "type": "ionic-angular"
 }
