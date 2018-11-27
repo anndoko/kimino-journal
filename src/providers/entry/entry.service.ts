@@ -26,7 +26,7 @@ export class EntryService {
       this.serviceObserver = observerThatWasCreated;
     });
 
-    // get entries according to userID
+    // Get entries according to userID
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.userID = user.uid;
@@ -40,8 +40,9 @@ export class EntryService {
               id: childSnapshot.key,
               title: childSnapshot.val().title,
               text: childSnapshot.val().text,
-              // img: childSnapshot.val().img,
-              timestamp: childSnapshot.val().timestamp,
+              avatar: childSnapshot.val().avatar,
+              img: childSnapshot.val().img,
+              timestamp: childSnapshot.val().timestamp
             };
             this.entries.push(entry);
             this.notifySubscribers();
@@ -72,7 +73,9 @@ export class EntryService {
     let dataRecord = {
       title: entry.title,
       text: entry.text,
-      timestamp: Date.now(),
+      avatar: entry.avatar,
+      img: entry.img,
+      timestamp: Date.now()
     }
     entryRef.set(dataRecord);
     console.log("Added an entry, the list is now: ", this.entries);

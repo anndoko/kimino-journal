@@ -2,8 +2,8 @@ export class Entry {
     id: string;
     title: string;
     text: string;
-    // photo
-    // avatar
+    img: string;
+    avatar: string;
     // location
     timestamp: any;
   }

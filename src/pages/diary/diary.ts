@@ -18,14 +18,11 @@ export class DiaryPage {
     public navCtrl: NavController,
     private entryDataService: EntryService
   ) {
-
     this.entryDataService.getObservable().subscribe(update => {
       this.entries = entryDataService.getEntries();
     });
-
     this.entries = this.entryDataService.getEntries();
   }
-
 
   private addEntry() {
     this.navCtrl.push(EntryEditPage);
