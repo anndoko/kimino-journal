@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
 import firebase from 'firebase';
 import { FIREBASE_CONFIG } from '../../app/app.firebase.config';
+import { AlertController } from 'ionic-angular';
 
 
 @Injectable()
@@ -14,7 +15,7 @@ export class EntryService {
   private clientObservable: Observable<Entry[]>;
   private userID: string;
 
-  constructor() {
+  constructor(private alertCtrl: AlertController) {
     if (!firebase.apps.length) {
       firebase.initializeApp(FIREBASE_CONFIG);
     }
@@ -75,8 +76,82 @@ export class EntryService {
     }
     entryRef.set(dataRecord);
     console.log("Added an entry, the list is now: ", this.entries);
+    this.notifySubscribers();
+  }
 
-    // this.notifySubscribers();
+  public removeEntry(id: string): void {
+    let diaryRef = this.db.ref('/' + this.userID);
+    let entryRef = diaryRef.child(id);
+    entryRef.remove();
+    this.notifySubscribers();
+  }
+
+  public updateEntry(id: string, newEntry: Entry): void {
+    let diaryRef = this.db.ref('/' + this.userID);
+    let entryRef = diaryRef.child(id);
+    let newTimestamp = new Date(Date.now());
+    let oldTimestamp = new Date(this.getEntryByID(id).timestamp);
+
+    let alert = this.alertCtrl.create({
+      title: 'Update timestamp?',
+      message: 'Do you want to keep the original timestamp for this entry, or update to the current time?',
+      inputs: [
+        {
+          name: "Keep Origin",
+          type: "radio",
+          value: 'Keep',
+          label: 'Keep (' + oldTimestamp.toLocaleString() + ')',
+          checked: true,
+        },
+        {
+          name: "Update to now",
+          type: "radio",
+          value: 'Update',
+          label: 'Update (' + newTimestamp.toLocaleString() + ')',
+        },
+      ],
+      buttons: [
+        {
+          text: "Cancel",
+          role: "cancel",
+          handler: data => {
+            console.log('Cancel');
+          }
+        },
+        {
+          text: "OK",
+          handler: (data: string) => {
+            if (data === 'Keep') {
+              entryRef.set({
+                title: newEntry.title,
+                text: newEntry.text,
+                // img: newEntry.img,
+                timestamp: newEntry.timestamp,
+              });
+            } else {
+              entryRef.set({
+                title: newEntry.title,
+                text: newEntry.text,
+                // img: newEntry.img,
+                timestamp: Date.now(),
+              });
+            }
+          }
+        },
+      ]
+    });
+    alert.present();
+    this.notifySubscribers();
+  }
+
+  public getEntryByID(id: string): Entry {
+    for (let e of this.entries) {
+      if (e.id === id) {
+        let clone = JSON.parse(JSON.stringify(e));
+        return clone;
+      }
+    }
+    return undefined;
   }
 
 }
