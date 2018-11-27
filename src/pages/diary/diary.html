@@ -1,25 +1,25 @@
 <ion-header>
-    <ion-navbar>
-      <ion-title>
-        My Diary
-      </ion-title>
-    </ion-navbar>
-  </ion-header>
-  
-  <ion-content padding>
+  <ion-navbar>
+    <ion-title>
+      My Diary
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      <button ion-button full (click)="addEntry()">Add Entry</button>
+    </ion-item>
     <ion-list>
-      <ion-item>
-        <button ion-button full (click)="addEntry()">Add Entry</button>
+      <ion-item *ngFor="let entry of entries">
+        <ion-label>
+          <h2>{{entry.title}}</h2>
+        </ion-label>
+        <ion-label>
+          <p>{{entry.text}}</p>
+        </ion-label>
       </ion-item>
-      <ion-list>
-        <ion-item *ngFor="let entry of entries">
-          <ion-label>
-            <h2>{{entry.title}}</h2>
-          </ion-label>
-          <ion-label>
-            <p>{{entry.text}}</p>
-          </ion-label>
-        </ion-item>
-      </ion-list>
     </ion-list>
-  </ion-content>
+  </ion-list>
+</ion-content>
