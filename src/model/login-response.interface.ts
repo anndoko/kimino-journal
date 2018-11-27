@@ -3,9 +3,9 @@ export interface LoginResponse {
     email?: string;
     uid?: string;
   }
-  error?:{
-    code?:string;
-    message?:string;
+  error?: {
+    code?: string;
+    message?: string;
   }
 
 }

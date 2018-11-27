@@ -11,14 +11,14 @@ import { EntryService } from "../../providers/entry/entry.service";
 
 export class EntryEditPage {
 
-  private entryText:string;
-  private entryTitle:string;
+  private entryText: string;
+  private entryTitle: string;
 
   constructor(
-    public navCtrl: NavController, 
-    public navParams: NavParams, 
+    public navCtrl: NavController,
+    public navParams: NavParams,
     private entryDataService: EntryService
-    ) {}
+  ) { }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EntryEditPage');
@@ -31,7 +31,7 @@ export class EntryEditPage {
     this.entryDataService.addEntry(newEntry);
     this.navCtrl.pop();
   }
-  
+
   private cancelEntry() {
     this.navCtrl.pop();
   }
