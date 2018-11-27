@@ -1,12 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the ProfilePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { EntryEditPage } from '../entry-edit/entry-edit';
+import { Entry } from '../../model/entry';
+import { EntryService } from "../../providers/entry/entry.service";
 
 @IonicPage()
 @Component({
@@ -14,9 +10,18 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'diary.html',
 })
 export class DiaryPage {
+  private entries: Entry[] = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController, 
+    private entryDataService: EntryService
+    ) {}
+
+  public ionViewWillEnter() {
+    this.entries = this.entryDataService.getEntries();
   }
 
-
+  private addEntry() {
+    this.navCtrl.push(EntryEditPage);
+  }
 }
