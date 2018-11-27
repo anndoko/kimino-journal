@@ -11,8 +11,10 @@ import { EntryService } from "../../providers/entry/entry.service";
 
 export class EntryEditPage {
 
-  private entryText: string;
   private entryTitle: string;
+  private entryText: string;
+  private entryAvatar: string;
+  private entryImg: string = "defaultImg";
 
   constructor(
     public navCtrl: NavController,
@@ -28,6 +30,8 @@ export class EntryEditPage {
     let newEntry = new Entry();
     newEntry.title = this.entryTitle;
     newEntry.text = this.entryText;
+    newEntry.avatar = this.entryAvatar;
+    newEntry.img = this.entryImg;
     this.entryDataService.addEntry(newEntry);
     this.navCtrl.pop();
   }
