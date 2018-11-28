@@ -5,6 +5,7 @@ import { EntryDetailPage } from '../entry-detail/entry-detail';
 import { Entry } from '../../model/entry';
 import { EntryService } from "../../providers/entry/entry.service";
 import firebase from 'firebase';
+import { SettingPage } from '../setting/setting';
 
 @IonicPage()
 @Component({
@@ -42,6 +43,10 @@ export class DiaryPage {
 
   private viewEntry(entryID: string) {
     this.navCtrl.push(EntryDetailPage, { "entryID": entryID });
+  }
+
+  private goToSetting() {
+    this.navCtrl.push(SettingPage);
   }
 
 }

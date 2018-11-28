@@ -10,20 +10,21 @@
   <ion-list>
     <ion-item>
       <button ion-button full (click)="addEntry()">Add Entry</button>
+      <button ion-button (click)="goToSetting()">Setting</button>
     </ion-item>
     <ion-item *ngFor="let entry of entries">
-        <ion-thumbnail item-start (click)="viewEntry(entry.id)">
-          <img src={{entry.avatar}}>
-        </ion-thumbnail>
-        <h2 class="title" (click)="viewEntry(entry.id)">{{entry.title}}</h2>
-        <p class="text" (click)="viewEntry(entry.id)">{{entry.text}}</p>
-        <p class="time" (click)="viewEntry(entry.id)">{{entry.timestamp | date: 'short'}}</p>
-        <button ion-button clear icon-only item-end (click)="deleteEntry(entry.id)">
-            <ion-icon name="close-circle" color="dark"></ion-icon>
-        </button>
-        <button ion-button clear icon-only item-end (click)="editEntry(entry.id)">
-            <ion-icon name="create" color="dark"></ion-icon>
-        </button>
+      <ion-thumbnail item-start (click)="viewEntry(entry.id)">
+        <img src={{entry.avatar}}>
+      </ion-thumbnail>
+      <h2 class="title" (click)="viewEntry(entry.id)">{{entry.title}}</h2>
+      <p class="text" (click)="viewEntry(entry.id)">{{entry.text}}</p>
+      <p class="time" (click)="viewEntry(entry.id)">{{entry.timestamp | date: 'short'}}</p>
+      <button ion-button clear icon-only item-end (click)="deleteEntry(entry.id)">
+        <ion-icon name="close-circle" color="dark"></ion-icon>
+      </button>
+      <button ion-button clear icon-only item-end (click)="editEntry(entry.id)">
+        <ion-icon name="create" color="dark"></ion-icon>
+      </button>
     </ion-item>
   </ion-list>
 </ion-content>

@@ -4,7 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { AngularFireModule } from 'angularfire2';
-import { AngularFireAuthModule }from 'angularfire2/auth';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 import { FIREBASE_CONFIG } from './app.firebase.config';
 
 import { AuthService } from '../providers/auth/auth.service';
@@ -13,12 +13,14 @@ import { EntryService } from '../providers/entry/entry.service';
 import { MyApp } from './app.component';
 import { EntryDetailPage } from '../pages/entry-detail/entry-detail';
 import { EntryEditPage } from '../pages/entry-edit/entry-edit'
+import { SettingPage } from '../pages/setting/setting';
 
 @NgModule({
   declarations: [
     MyApp,
     EntryDetailPage,
-    EntryEditPage
+    EntryEditPage,
+    SettingPage
   ],
   imports: [
     BrowserModule,
@@ -30,14 +32,15 @@ import { EntryEditPage } from '../pages/entry-edit/entry-edit'
   entryComponents: [
     MyApp,
     EntryDetailPage,
-    EntryEditPage
+    EntryEditPage,
+    SettingPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
     AuthService,
     EntryService
   ]
 })
-export class AppModule {}
+export class AppModule { }
