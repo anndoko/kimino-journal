@@ -6,19 +6,35 @@
 
 
 <ion-content padding>
-  <ion-list>
+  <ion-list no-border>
     <ion-list-header>
       Diary Account
     </ion-list-header>
-    <ion-item>User Name placeholder</ion-item>
+
+    <ion-item>
+      <ion-label>
+        Namewillbehere
+      </ion-label>
+    </ion-item>
   </ion-list>
 
   <ion-list>
     <ion-list-header>
       Notification
     </ion-list-header>
-    <ion-item>Terminator II</ion-item>
-    <ion-item>The Empire Strikes Back</ion-item>
-    <ion-item>Blade Runner</ion-item>
+    <ion-item>
+      <ion-toggle checked="false"></ion-toggle>
+      <ion-label>
+        <h2>Daily Reminder</h2>
+        <p>Remind me to write a dairy every day</p>
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-toggle checked="false"></ion-toggle>
+      <ion-label>
+        <h2>Regular Reminder</h2>
+        <p>Remind me to write a dairy every X day</p>
+      </ion-label>
+    </ion-item>
   </ion-list>
 </ion-content>

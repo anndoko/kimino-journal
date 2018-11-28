@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Entry } from '../../model/entry';
+import { Entry, Setting } from '../../model/entry';
 import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
 import firebase from 'firebase';
@@ -11,6 +11,7 @@ import { AlertController } from 'ionic-angular';
 export class EntryService {
   private db: any;
   private entries: Entry[] = [];
+  private setting: Setting[] = [];
   private serviceObserver: Observer<Entry[]>;
   private clientObservable: Observable<Entry[]>;
   private userID: string;
@@ -31,7 +32,7 @@ export class EntryService {
       if (user) {
         this.userID = user.uid;
 
-        let dataRef = this.db.ref('/' + this.userID);
+        let dataRef = this.db.ref('/' + this.userID + '/entry');
 
         dataRef.on('value', snapshot => {
           this.entries = [];
@@ -48,6 +49,12 @@ export class EntryService {
             this.notifySubscribers();
           });
         });
+
+        let settingRef = this.db.ref('/' + this.userID + '/setting');
+
+        settingRef.on('value', snapshot => {
+
+        })
       }
     });
   }
@@ -68,7 +75,7 @@ export class EntryService {
   }
 
   public addEntry(entry: Entry) {
-    let diaryRef = this.db.ref('/' + this.userID);
+    let diaryRef = this.db.ref('/' + this.userID + '/entry');
     let entryRef = diaryRef.push();
     let dataRecord = {
       title: entry.title,
@@ -83,14 +90,14 @@ export class EntryService {
   }
 
   public removeEntry(id: string): void {
-    let diaryRef = this.db.ref('/' + this.userID);
+    let diaryRef = this.db.ref('/' + this.userID + '/entry');
     let entryRef = diaryRef.child(id);
     entryRef.remove();
     this.notifySubscribers();
   }
 
   public updateEntry(id: string, newEntry: Entry): void {
-    let diaryRef = this.db.ref('/' + this.userID);
+    let diaryRef = this.db.ref('/' + this.userID + '/entry');
     let entryRef = diaryRef.child(id);
     let newTimestamp = new Date(Date.now());
     let oldTimestamp = new Date(this.getEntryByID(id).timestamp);
@@ -146,7 +153,7 @@ export class EntryService {
       ]
     });
     alert.present();
-    
+
     this.notifySubscribers();
   }
 
