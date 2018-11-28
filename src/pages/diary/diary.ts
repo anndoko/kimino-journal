@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { EntryEditPage } from '../entry-edit/entry-edit';
+import { EntryDetailPage } from '../entry-detail/entry-detail';
 import { Entry } from '../../model/entry';
 import { EntryService } from "../../providers/entry/entry.service";
 import firebase from 'firebase';
@@ -37,6 +38,10 @@ export class DiaryPage {
   private deleteEntry(entryID: string) {
     console.log("deleting entry", entryID);
     this.entryDataService.removeEntry(entryID);
+  }
+
+  private viewEntry(entryID: string) {
+    this.navCtrl.push(EntryDetailPage, { "entryID": entryID });
   }
 
 }
