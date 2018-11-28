@@ -11,13 +11,13 @@
       <ion-item color="secondary">
         <ion-label>My Avatar</ion-label>
       </ion-item>
-      <ion-list radio-group [(ngModel)]="entryAvatar">
+      <ion-list radio-group [(ngModel)]="entry.avatar">
         <ion-item>
-          <ion-label><ion-img width="50" height="50" src="../../assets/imgs/avatar1.png"></ion-img></ion-label>
+          <ion-label><ion-img width="25" height="25" src="../../assets/imgs/avatar1.png"></ion-img></ion-label>
           <ion-radio checked="true" value="../../assets/imgs/avatar1.png"></ion-radio>
         </ion-item>
         <ion-item>
-          <ion-label><ion-img width="50" height="50" src="../../assets/imgs/avatar2.png"></ion-img></ion-label>
+          <ion-label><ion-img width="25" height="25" src="../../assets/imgs/avatar2.png"></ion-img></ion-label>
           <ion-radio checked="false" value="../../assets/imgs/avatar2.png"></ion-radio>
         </ion-item>
       </ion-list>
@@ -27,7 +27,7 @@
         <ion-label>Title</ion-label>
       </ion-item>
       <ion-item>
-        <ion-input type="text" placeholder="This is about..." [(ngModel)]="entryTitle"></ion-input>
+        <ion-input type="text" placeholder="This is about..." [(ngModel)]="entry.title"></ion-input>
       </ion-item>
 
       <!-- Description -->
@@ -35,7 +35,7 @@
         <ion-label>Description</ion-label>
       </ion-item>
       <ion-item>
-        <ion-textarea placeholder="Today I..." [(ngModel)]="entryText"></ion-textarea>
+        <ion-textarea placeholder="Today I..." [(ngModel)]="entry.text"></ion-textarea>
       </ion-item>
       
     </ion-list>

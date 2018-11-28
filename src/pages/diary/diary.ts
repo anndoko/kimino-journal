@@ -10,6 +10,7 @@ import firebase from 'firebase';
   selector: 'page-diary',
   templateUrl: 'diary.html',
 })
+
 export class DiaryPage {
   private entries: Entry[] = [];
   private account = {} as Account;
@@ -27,4 +28,15 @@ export class DiaryPage {
   private addEntry() {
     this.navCtrl.push(EntryEditPage);
   }
+
+  private editEntry(entryID: string) {
+    console.log("editing entry ", entryID);
+    this.navCtrl.push(EntryEditPage, { "entryID": entryID });
+  }
+
+  private deleteEntry(entryID: string) {
+    console.log("deleting entry", entryID);
+    this.entryDataService.removeEntry(entryID);
+  }
+
 }

@@ -128,14 +128,16 @@ export class EntryService {
               entryRef.set({
                 title: newEntry.title,
                 text: newEntry.text,
-                // img: newEntry.img,
+                avatar: newEntry.avatar,
+                img: newEntry.img,
                 timestamp: newEntry.timestamp,
               });
             } else {
               entryRef.set({
                 title: newEntry.title,
                 text: newEntry.text,
-                // img: newEntry.img,
+                avatar: newEntry.avatar,
+                img: newEntry.img,
                 timestamp: Date.now(),
               });
             }
@@ -144,6 +146,7 @@ export class EntryService {
       ]
     });
     alert.present();
+    
     this.notifySubscribers();
   }
 
