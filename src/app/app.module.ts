@@ -32,8 +32,8 @@ import { SettingPage } from '../pages/setting/setting';
   entryComponents: [
     MyApp,
     EntryDetailPage,
-    EntryEditPage,
-    SettingPage
+    // EntryEditPage,
+    // SettingPage
   ],
   providers: [
     StatusBar,
