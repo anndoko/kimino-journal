@@ -8,6 +8,6 @@ export class Entry {
 }
 
 export class Setting {
-  dailyNotification: boolean;
-  regularNotification: boolean;
+  dailyNotification: any;
+  regularNotification: any;
 }

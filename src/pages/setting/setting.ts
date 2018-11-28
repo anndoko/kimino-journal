@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Setting } from '../../model/entry';
+import { EntryService } from '../../providers/entry/entry.service';
 
 /**
  * Generated class for the SettingPage page.
@@ -15,14 +16,28 @@ import { Setting } from '../../model/entry';
   templateUrl: 'setting.html',
 })
 export class SettingPage {
-  private setting: Setting;
+  private setting: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    private entryDataService: EntryService
+  ) {
+    this.entryDataService.getObservable().subscribe(update => {
+      this.setting = entryDataService.getSetting();
+    });
+    this.setting = this.entryDataService.getSetting();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SettingPage');
+  }
+
+  private toggleSettingDaily(checked) {
+    this.entryDataService.toggleNotificationDaily(checked);
+  }
+
+  private toggleSettingRegular(checked) {
+    this.entryDataService.toggleNotificationRegular(checked);
   }
 
 }

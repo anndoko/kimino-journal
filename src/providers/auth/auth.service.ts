@@ -15,29 +15,29 @@ export class AuthService {
     console.log('Hello Auth Provider');
   }
 
-  async createUserWithEmailAndPassword(account){
-    try{
-      return <LoginResponse> {
+  async createUserWithEmailAndPassword(account) {
+    try {
+      return <LoginResponse>{
         result: await
-        this.auth.auth.createUserWithEmailAndPassword
-        (account.email,account.password)
+          this.auth.auth.createUserWithEmailAndPassword
+            (account.email, account.password)
       }
     }
-      catch(e){
-        return <LoginResponse>{
-          error: e
-        }
+    catch (e) {
+      return <LoginResponse>{
+        error: e
       }
+    }
   }
 
 
-  async signInWithEmailAndPassword(account: Account){
-    try{
+  async signInWithEmailAndPassword(account: Account) {
+    try {
       return <LoginResponse>{
         result: await this.auth.auth.signInWithEmailAndPassword(account.email, account.password)
       }
     }
-    catch(e){
+    catch (e) {
       return <LoginResponse>{
         error: e
       };

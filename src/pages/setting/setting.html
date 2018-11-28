@@ -14,6 +14,7 @@
     <ion-item>
       <ion-label>
         Namewillbehere
+        <button ion-button (click)="logOut()">Log out</button>
       </ion-label>
     </ion-item>
   </ion-list>
@@ -23,14 +24,14 @@
       Notification
     </ion-list-header>
     <ion-item>
-      <ion-toggle checked="false"></ion-toggle>
+      <ion-toggle [checked]="this.setting.dailyNotification" (ionChange)="toggleSettingDaily($event._value)"></ion-toggle>
       <ion-label>
         <h2>Daily Reminder</h2>
         <p>Remind me to write a dairy every day</p>
       </ion-label>
     </ion-item>
     <ion-item>
-      <ion-toggle checked="false"></ion-toggle>
+      <ion-toggle [checked]="this.setting.regularNotification" (ionChange)="toggleSettingRegular($event._value)"></ion-toggle>
       <ion-label>
         <h2>Regular Reminder</h2>
         <p>Remind me to write a dairy every X day</p>
