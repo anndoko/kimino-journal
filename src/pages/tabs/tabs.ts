@@ -23,7 +23,7 @@ export class TabsPage {
 
   this.tab1Root = 'DiaryPage';
   this.tab2Root = 'EntryEditPage';
-  this.tab3Root = 'SettingPage'; //to be created
+  this.tab3Root = 'SettingPage';
 
   }
 
