@@ -16,14 +16,16 @@ import { LoginResponse } from '../../model/login-response.interface';
 })
 export class RegisterPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private toast: ToastController){
-
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    private toast: ToastController) {
   }
-  register(event: LoginResponse){
-    if(!event.error){
+
+  register(event: LoginResponse) {
+    if (!event.error) {
       this.toast.create({
         message: 'Account created',
-        duration:3000
+        duration: 3000
       }).present();
     }
     else {

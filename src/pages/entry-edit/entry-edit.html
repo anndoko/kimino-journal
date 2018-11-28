@@ -2,31 +2,32 @@
     <ion-navbar>
       <ion-title>I want to share this with you...</ion-title>
     </ion-navbar>
-  </ion-header>
-  <ion-content padding>
+ </ion-header>
+
+ <ion-content padding>
     <ion-list no-lines>
 
       <!-- Avatar -->
       <ion-item color="secondary">
         <ion-label>My Avatar</ion-label>
       </ion-item>
-      <ion-list radio-group [(ngModel)]="entryAvatar">
+      <ion-list radio-group [(ngModel)]="entry.avatar">
         <ion-item>
-          <ion-label><ion-img width="50" height="50" src="../../assets/imgs/avatar1.png"></ion-img></ion-label>
+          <ion-label><ion-img width="35" height="35" src="../../assets/imgs/avatar1.png"></ion-img></ion-label>
           <ion-radio checked="true" value="../../assets/imgs/avatar1.png"></ion-radio>
         </ion-item>
         <ion-item>
-          <ion-label><ion-img width="50" height="50" src="../../assets/imgs/avatar2.png"></ion-img></ion-label>
+          <ion-label><ion-img width="35" height="35" src="../../assets/imgs/avatar2.png"></ion-img></ion-label>
           <ion-radio checked="false" value="../../assets/imgs/avatar2.png"></ion-radio>
         </ion-item>
       </ion-list>
-
+      
       <!-- Title -->
       <ion-item color="secondary">
         <ion-label>Title</ion-label>
       </ion-item>
       <ion-item>
-        <ion-input type="text" placeholder="This is about..." [(ngModel)]="entryTitle"></ion-input>
+        <ion-input type="text" placeholder="This is about..." [(ngModel)]="entry.title"></ion-input>
       </ion-item>
 
       <!-- Description -->
@@ -34,11 +35,9 @@
         <ion-label>Description</ion-label>
       </ion-item>
       <ion-item>
-        <ion-textarea placeholder="Today I..." [(ngModel)]="entryText"></ion-textarea>
+        <ion-textarea placeholder="Today I..." [(ngModel)]="entry.text"></ion-textarea>
       </ion-item>
-
-      <!-- Photo -->
-
+      
     </ion-list>
     <ion-list>
       <ion-item>
@@ -46,4 +45,4 @@
         <button ion-button (click)="saveEntry()">Save</button>
       </ion-item>
     </ion-list>
-  </ion-content>
+</ion-content>

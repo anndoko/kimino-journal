@@ -11,28 +11,35 @@ import { EntryService } from "../../providers/entry/entry.service";
 
 export class EntryEditPage {
 
-  private entryTitle: string;
-  private entryText: string;
-  private entryAvatar: string;
-  private entryImg: string = "defaultImg";
+  private entry: Entry;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private entryDataService: EntryService
-  ) { }
+  ) { 
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad EntryEditPage');
+    let entryID = this.navParams.get("entryID");
+    if (entryID === undefined) {
+      this.entry = new Entry();
+      this.entry.title = "";
+      this.entry.text = "";
+      this.entry.avatar = "";
+      this.entry.img = "";
+      this.entry.timestamp = Date.now();
+      this.entry.id = 'undefined'; // placeholder for 'temporary' entry
+    } else {
+      this.entry = this.entryDataService.getEntryByID(entryID);
+    }
+    console.log("entry is ", this.entry);
   }
 
   private saveEntry() {
-    let newEntry = new Entry();
-    newEntry.title = this.entryTitle;
-    newEntry.text = this.entryText;
-    newEntry.avatar = this.entryAvatar;
-    newEntry.img = this.entryImg;
-    this.entryDataService.addEntry(newEntry);
+    if (this.entry.id === 'undefined') {
+      this.entryDataService.addEntry(this.entry);
+    } else {
+      this.entryDataService.updateEntry(this.entry.id, this.entry);
+    }
     this.navCtrl.pop();
   }
 
