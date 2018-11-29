@@ -11,10 +11,11 @@ import { AlertController } from 'ionic-angular';
 export class EntryService {
   private db: any;
   private entries: Entry[] = [];
-  private setting: Setting[] = [];
+  private setting: Setting;
   private serviceObserver: Observer<Entry[]>;
   private clientObservable: Observable<Entry[]>;
   private userID: string;
+  private userName: string;
 
   constructor(private alertCtrl: AlertController) {
     if (!firebase.apps.length) {
@@ -31,6 +32,7 @@ export class EntryService {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         this.userID = user.uid;
+        this.userName = user.email;
 
         let dataRef = this.db.ref('/' + this.userID + '/entry');
 
@@ -49,12 +51,21 @@ export class EntryService {
             this.notifySubscribers();
           });
         });
-
         let settingRef = this.db.ref('/' + this.userID + '/setting');
-
         settingRef.on('value', snapshot => {
-
-        })
+          if (snapshot.val() != null) {
+            this.setting = {
+              dailyNotification: snapshot.val().dailyNotification,
+              regularNotification: snapshot.val().regularNotification
+            };
+          } else {
+            this.setting = {
+              dailyNotification: false,
+              regularNotification: false
+            };
+          }
+          this.notifySubscribers;
+        });
       }
     });
   }
@@ -67,11 +78,23 @@ export class EntryService {
     this.serviceObserver.next(undefined);
   }
 
+  public getUserName() {
+    return this.userName;
+  }
+
   public getEntries(): Entry[] {
     let entriesClone = JSON.parse(JSON.stringify(this.entries));
     console.log("getEntries!!!!!", entriesClone)
 
     return entriesClone;
+  }
+
+  public getSetting(): Setting[] {
+
+    let settingClone = JSON.parse(JSON.stringify(this.setting));
+    console.log("getSetting!!!!!", settingClone);
+
+    return settingClone;
   }
 
   public addEntry(entry: Entry) {
@@ -165,6 +188,22 @@ export class EntryService {
       }
     }
     return undefined;
+  }
+
+  public toggleNotificationDaily(dailyChecked) {
+    let diaryRef = this.db.ref('/' + this.userID + '/setting');
+    let settingRef = diaryRef.child('dailyNotification')
+    settingRef.set(dailyChecked);
+    console.log("Notifiaction for daily reminder is now: ", dailyChecked);
+    this.notifySubscribers();
+  }
+
+  public toggleNotificationRegular(regularChecked) {
+    let diaryRef = this.db.ref('/' + this.userID + '/setting');
+    let settingRef = diaryRef.child('regularNotification');
+    settingRef.set(regularChecked);
+    console.log("Notifiaction for regular reminder is now: ", regularChecked);
+    this.notifySubscribers();
   }
 
 }

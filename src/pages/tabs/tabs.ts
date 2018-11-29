@@ -26,6 +26,4 @@ export class TabsPage {
   this.tab3Root = 'SettingPage';
 
   }
-
-
 }

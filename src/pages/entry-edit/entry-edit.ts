@@ -18,7 +18,6 @@ export class EntryEditPage {
     public navParams: NavParams,
     private entryDataService: EntryService
   ) {
-
     let entryID = this.navParams.get("entryID");
     if (entryID === undefined) {
       this.entry = new Entry();

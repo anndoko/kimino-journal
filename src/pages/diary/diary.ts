@@ -15,7 +15,6 @@ import { SettingPage } from '../setting/setting';
 
 export class DiaryPage {
   private entries: Entry[] = [];
-  private account = {} as Account;
 
   constructor(
     public navCtrl: NavController,

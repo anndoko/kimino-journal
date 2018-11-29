@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { AngularFireAuth} from 'angularfire2/auth';
+import { AngularFireAuth } from 'angularfire2/auth';
 import { Account } from '../../model/account.interface';
 import { LoginResponse } from '../../model/login-response.interface';
 import { AuthService } from '../../providers/auth/auth.service';
+import firebase from 'firebase';
 
 /**
  * Generated class for the LoginFormComponent component.
@@ -18,19 +19,19 @@ import { AuthService } from '../../providers/auth/auth.service';
 
 export class LoginFormComponent {
 
-    account = {} as Account;
-    @Output() loginStatus: EventEmitter<LoginResponse>;
+  account = {} as Account;
+  @Output() loginStatus: EventEmitter<LoginResponse>;
 
-    constructor(private auth: AuthService, private navCtrl: NavController) {
-      this.loginStatus = new EventEmitter<LoginResponse>();
-    }
+  constructor(private auth: AuthService, private navCtrl: NavController) {
+    this.loginStatus = new EventEmitter<LoginResponse>();
+  }
 
-    async login(){
-      const loginResponse = await this.auth.signInWithEmailAndPassword(this.account)
-      this.loginStatus.emit(loginResponse);
-    }
+  async login() {
+    const loginResponse = await this.auth.signInWithEmailAndPassword(this.account);
+    this.loginStatus.emit(loginResponse);
+  }
 
-  navigateToRegisterPage(){
+  navigateToRegisterPage() {
     this.navCtrl.push('RegisterPage');
   }
 
