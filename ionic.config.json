@@ -1,5 +1,7 @@
 {
   "name": "loginSpike",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }
