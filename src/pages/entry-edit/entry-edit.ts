@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { Entry } from '../../model/entry';
 import { EntryService } from "../../providers/entry/entry.service";
 import { Camera, CameraOptions } from '@ionic-native/camera';
-
+import { DiaryPage } from '../diary/diary';
 
 const PLACEHOLDER_IMAGE: string = "/assets/imgs/placeholder.png";
 const SPINNER_IMAGE: string = "/assets/imgs/spinner.gif";
@@ -23,7 +23,7 @@ export class EntryEditPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private entryDataService: EntryService, 
+    private entryDataService: EntryService,
     private camera: Camera
   ) {
     let entryID = this.navParams.get("entryID");
@@ -74,15 +74,15 @@ export class EntryEditPage {
     } else {
       this.entryDataService.updateEntry(this.entry.id, this.entry);
     }
-    this.navCtrl.pop();
+    this.navCtrl.push(DiaryPage);
   }
 
   private cancelEntry() {
-    this.navCtrl.pop();
+    this.navCtrl.push(DiaryPage);
   }
 
   private back() {
-    this.navCtrl.pop();
+    this.navCtrl.push(DiaryPage);
   }
 
 }
