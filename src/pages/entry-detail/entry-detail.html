@@ -8,6 +8,8 @@
 
 <ion-content padding>
   <img width="50" height="50" src={{entry.avatar}}>
-  <p class="text">{{entry.text}}</p>
-  <p class="time" (click)="viewEntry(entry.id)">{{entry.timestamp | date: 'short'}}</p>
+  <p>{{entry.text}}</p>
+  <p>{{entry.timestamp | date: 'short'}}</p>
+  
+  <img *ngIf="entry.img != ''" src={{entry.img}}>
 </ion-content>

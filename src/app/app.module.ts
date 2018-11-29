@@ -15,6 +15,8 @@ import { EntryDetailPage } from '../pages/entry-detail/entry-detail';
 import { EntryEditPage } from '../pages/entry-edit/entry-edit'
 import { SettingPage } from '../pages/setting/setting';
 
+import { Camera } from '@ionic-native/camera';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -38,6 +40,7 @@ import { SettingPage } from '../pages/setting/setting';
   providers: [
     StatusBar,
     SplashScreen,
+    Camera,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     AuthService,
     EntryService
