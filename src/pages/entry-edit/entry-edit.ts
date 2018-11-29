@@ -31,7 +31,7 @@ export class EntryEditPage {
       this.entry = new Entry();
       this.entry.title = "";
       this.entry.text = "";
-      this.entry.avatar = "";
+      this.entry.avatar = "../../assets/imgs/avatar1.png";
       this.entry.img = "";
       this.entry.timestamp = Date.now();
       this.entry.id = 'undefined'; // placeholder for 'temporary' entry
