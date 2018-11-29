@@ -74,7 +74,7 @@ export class EntryEditPage {
     } else {
       this.entryDataService.updateEntry(this.entry.id, this.entry);
     }
-    this.navCtrl.pop();
+    this.navCtrl.push(DiaryPage);
   }
 
   private cancelEntry() {
