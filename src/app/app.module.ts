@@ -20,7 +20,7 @@ import { Camera } from '@ionic-native/camera';
 @NgModule({
   declarations: [
     MyApp,
-    // EntryDetailPage,
+    EntryDetailPage,
     // EntryEditPage,
     // SettingPage
   ],
@@ -33,7 +33,7 @@ import { Camera } from '@ionic-native/camera';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    // EntryDetailPage,
+    EntryDetailPage,
     // EntryEditPage,
     // SettingPage
   ],

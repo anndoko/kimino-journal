@@ -74,7 +74,7 @@ export class EntryEditPage {
     } else {
       this.entryDataService.updateEntry(this.entry.id, this.entry);
     }
-    this.navCtrl.push(DiaryPage);
+    this.navCtrl.pop();
   }
 
   private cancelEntry() {
@@ -82,7 +82,7 @@ export class EntryEditPage {
   }
 
   private back() {
-    this.navCtrl.push(DiaryPage);
+    this.navCtrl.pop();
   }
 
 }
