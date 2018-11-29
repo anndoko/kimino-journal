@@ -52,15 +52,23 @@ export class EntryService {
           });
         });
 
-        let settingRef = this.db.ref('/' + this.userID + '/setting');
-
-        settingRef.on('value', snapshot => {
+        try {
+          // if there is some data in firebase
+          let settingRef = this.db.ref('/' + this.userID + '/setting');
+          settingRef.on('value', snapshot => {
+            this.setting = {
+              dailyNotification: snapshot.val().dailyNotification,
+              regularNotification: snapshot.val().regularNotification
+            };
+            this.notifySubscribers;
+          });
+        } catch {
+          // default setting
           this.setting = {
-            dailyNotification: snapshot.val().dailyNotification,
-            regularNotification: snapshot.val().regularNotification
+            dailyNotification: false,
+            regularNotification: false
           };
-          this.notifySubscribers;
-        });
+        }
       }
     });
   }
