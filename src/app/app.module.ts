@@ -14,7 +14,8 @@ import { MyApp } from './app.component';
 import { EntryDetailPage } from '../pages/entry-detail/entry-detail';
 import { EntryEditPage } from '../pages/entry-edit/entry-edit'
 import { SettingPage } from '../pages/setting/setting';
-
+import { SettingPageModule } from '../pages/setting/setting.module';
+import { EntryEditPageModule } from '../pages/entry-edit/entry-edit.module';
 import { Camera } from '@ionic-native/camera';
 
 @NgModule({
@@ -28,14 +29,16 @@ import { Camera } from '@ionic-native/camera';
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    SettingPageModule,
+    EntryEditPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     EntryDetailPage,
-    // EntryEditPage,
-    // SettingPage
+    EntryEditPage,
+    SettingPage
   ],
   providers: [
     StatusBar,
