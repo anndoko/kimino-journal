@@ -32,22 +32,50 @@ export class EntryEditPage {
       this.entry.title = "";
       this.entry.text = "";
       this.entry.avatar = "../../assets/imgs/avatar1.png";
-      this.entry.img = "";
+      this.entry.img = PLACEHOLDER_IMAGE;
       this.entry.timestamp = Date.now();
       this.entry.id = 'undefined'; // placeholder for 'temporary' entry
     } else {
       this.entry = this.entryDataService.getEntryByID(entryID);
+      this.oldImg = this.entry.img;
     }
     console.log("entry is ", this.entry);
   }
 
-
+  // Take photo using native camer
   private takePic() {
     const options: CameraOptions = {
-      quality: 80,
+      quality: 70,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE
+    }
+
+    this.camera.getPicture(options).then((imageData) => {
+      if (imageData) {
+        this.entry.img = 'data:image/jpeg;base64,' + imageData;
+      } else {
+        this.entry.img = PLACEHOLDER_IMAGE;
+      }
+    }, (err) => {
+      if (this.oldImg != null) {
+        this.entry.img = this.oldImg;
+
+      } else {
+        this.entry.img = PLACEHOLDER_IMAGE;
+      }
+    });
+
+    this.entry.img = SPINNER_IMAGE;
+  }
+
+  // Select photo from local library
+  private getPic() {
+    const options: CameraOptions = {
+      quality: 70,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+      saveToPhotoAlbum: false
     }
 
     this.camera.getPicture(options).then((imageData) => {
