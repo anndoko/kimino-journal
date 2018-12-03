@@ -32,7 +32,7 @@ export class EntryEditPage {
       this.entry.title = "";
       this.entry.text = "";
       this.entry.avatar = "../../assets/imgs/avatar1.png";
-      this.entry.img = "";
+      this.entry.img = PLACEHOLDER_IMAGE;
       this.entry.timestamp = Date.now();
       this.entry.id = 'undefined'; // placeholder for 'temporary' entry
     } else {
@@ -42,7 +42,7 @@ export class EntryEditPage {
     console.log("entry is ", this.entry);
   }
 
-
+  // Take photo using native camer
   private takePic() {
     const options: CameraOptions = {
       quality: 70,
@@ -69,6 +69,7 @@ export class EntryEditPage {
     this.entry.img = SPINNER_IMAGE;
   }
 
+  // Select photo from local library
   private getPic() {
     const options: CameraOptions = {
       quality: 70,
