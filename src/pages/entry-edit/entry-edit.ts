@@ -37,6 +37,7 @@ export class EntryEditPage {
       this.entry.id = 'undefined'; // placeholder for 'temporary' entry
     } else {
       this.entry = this.entryDataService.getEntryByID(entryID);
+      this.oldImg = this.entry.img;
     }
     console.log("entry is ", this.entry);
   }
