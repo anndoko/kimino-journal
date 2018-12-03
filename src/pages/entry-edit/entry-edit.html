@@ -21,7 +21,7 @@
           <ion-radio checked="false" value="../../assets/imgs/avatar2.png"></ion-radio>
         </ion-item>
       </ion-list>
-      
+
       <!-- Title -->
       <ion-item color="secondary">
         <ion-label>Title</ion-label>
@@ -37,10 +37,13 @@
       <ion-item>
         <ion-textarea placeholder="Today I..." [(ngModel)]="entry.text"></ion-textarea>
       </ion-item>
-      
+
       <!-- Photo -->
       <img class="placeholder" [src]="entry.img">
-      <button ion-button full (click)="takePic()" class="takepic" color="light">Take Pic</button>
+      <button ion-button full (click)="takePic()">Take Photo</button>
+
+      <!-- Photo Library-->
+      <button ion-button full (click)="getPic()">Use My Photo Library</button>
 
     </ion-list>
     <ion-list>

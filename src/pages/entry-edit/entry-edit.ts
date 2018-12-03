@@ -44,10 +44,36 @@ export class EntryEditPage {
 
   private takePic() {
     const options: CameraOptions = {
-      quality: 80,
+      quality: 70,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE
+    }
+
+    this.camera.getPicture(options).then((imageData) => {
+      if (imageData) {
+        this.entry.img = 'data:image/jpeg;base64,' + imageData;
+      } else {
+        this.entry.img = PLACEHOLDER_IMAGE;
+      }
+    }, (err) => {
+      if (this.oldImg != null) {
+        this.entry.img = this.oldImg;
+
+      } else {
+        this.entry.img = PLACEHOLDER_IMAGE;
+      }
+    });
+
+    this.entry.img = SPINNER_IMAGE;
+  }
+
+  private getPic() {
+    const options: CameraOptions = {
+      quality: 70,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+      saveToPhotoAlbum: false
     }
 
     this.camera.getPicture(options).then((imageData) => {
