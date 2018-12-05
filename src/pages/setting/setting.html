@@ -39,5 +39,23 @@
         <p>Remind me to write a dairy every X day</p>
       </ion-label>
     </ion-item>
+
+
+
+    <ion-item>
+      <ion-label fixed>Message</ion-label>
+      <ion-input type="text" [(ngModel)]="message"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>Time in seconds</ion-label>
+      <ion-input type="text" [(ngModel)]="time"></ion-input>
+    </ion-item>
+    <button ion-button (click)="scheduleNotification()">Save</button>
+
+
+
+
+
+
   </ion-list>
 </ion-content>

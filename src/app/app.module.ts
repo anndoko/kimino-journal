@@ -18,6 +18,7 @@ import { SettingPageModule } from '../pages/setting/setting.module';
 import { EntryEditPageModule } from '../pages/entry-edit/entry-edit.module';
 import { Camera } from '@ionic-native/camera';
 import { Geolocation } from '@ionic-native/geolocation';
+import { LocalNotifications } from '@ionic-native/local-notifications';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { Geolocation } from '@ionic-native/geolocation';
     AuthService,
     EntryService,
     Push,
-    Geolocation
+    Geolocation,
+    LocalNotifications
   ]
 })
 export class AppModule { }
