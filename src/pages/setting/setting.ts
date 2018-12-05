@@ -17,6 +17,7 @@ import { EntryService } from '../../providers/entry/entry.service';
 })
 export class SettingPage {
   private setting: any;
+  private username: string;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -24,8 +25,11 @@ export class SettingPage {
   ) {
     this.entryDataService.getObservable().subscribe(update => {
       this.setting = entryDataService.getSetting();
+      this.username = entryDataService.getUserName();
     });
     this.setting = this.entryDataService.getSetting();
+    this.username = entryDataService.getUserName();
+
   }
 
   ionViewDidLoad() {

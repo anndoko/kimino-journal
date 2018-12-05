@@ -1,9 +1,10 @@
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { Component } from '@angular/core';
 import { Entry } from '../../model/entry';
 import { EntryService } from "../../providers/entry/entry.service";
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { DiaryPage } from '../diary/diary';
+import { Geolocation } from '@ionic-native/geolocation';
 
 const PLACEHOLDER_IMAGE: string = "/assets/imgs/placeholder.png";
 const SPINNER_IMAGE: string = "/assets/imgs/spinner.gif";
@@ -24,7 +25,9 @@ export class EntryEditPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private entryDataService: EntryService,
-    private camera: Camera
+    private camera: Camera,
+    private geolocation: Geolocation,
+    private toast: ToastController,
   ) {
     let entryID = this.navParams.get("entryID");
     if (entryID === undefined) {
@@ -34,6 +37,7 @@ export class EntryEditPage {
       this.entry.avatar = "../../assets/imgs/avatar1.png";
       this.entry.img = PLACEHOLDER_IMAGE;
       this.entry.timestamp = Date.now();
+      this.entry.location = [0, 0];
       this.entry.id = 'undefined'; // placeholder for 'temporary' entry
     } else {
       this.entry = this.entryDataService.getEntryByID(entryID);
@@ -45,7 +49,7 @@ export class EntryEditPage {
   // Take photo using native camer
   private takePic() {
     const options: CameraOptions = {
-      quality: 70,
+      quality: 50,
       destinationType: this.camera.DestinationType.DATA_URL,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE
@@ -72,7 +76,7 @@ export class EntryEditPage {
   // Select photo from local library
   private getPic() {
     const options: CameraOptions = {
-      quality: 70,
+      quality: 50,
       destinationType: this.camera.DestinationType.DATA_URL,
       sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
       saveToPhotoAlbum: false
@@ -94,6 +98,35 @@ export class EntryEditPage {
     });
 
     this.entry.img = SPINNER_IMAGE;
+  }
+
+  // Check in the geolocation
+  private getLocation() {
+    this.geolocation.getCurrentPosition().then((resp) => {
+      this.toast.create({
+        message: 'Get location successfully!',
+        duration: 1500
+      }).present();
+
+      console.log('get location: ');
+      console.log(resp.coords.latitude);
+      console.log(resp.coords.longitude);
+      this.entry.location = [resp.coords.latitude, resp.coords.longitude];
+
+    }).catch((error) => {
+      this.toast.create({
+        message: 'Error getting location' + error,
+        duration: 3000
+      }).present();
+    });
+
+    // let watch = this.geolocation.watchPosition();
+    // watch.subscribe((data) => {
+    //   // data can be a set of coordinates, or an error (if an error occurred).
+    //   console.log('from watch: ');
+    //   console.log(data.coords.latitude);
+    //   console.log(data.coords.longitude);
+    // });
   }
 
   private saveEntry() {

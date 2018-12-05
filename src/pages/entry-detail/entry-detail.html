@@ -9,7 +9,9 @@
 <ion-content padding>
   <img width="50" height="50" src={{entry.avatar}}>
   <p>{{entry.text}}</p>
+  <!-- I know this sucks, I will fix it -->
+  <p style="font-size: 80%;">{{entry.location}}</p>
   <p>{{entry.timestamp | date: 'short'}}</p>
-  
+
   <img *ngIf="entry.img != ''" src={{entry.img}}>
 </ion-content>

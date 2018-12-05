@@ -45,12 +45,14 @@ export class EntryService {
               text: childSnapshot.val().text,
               avatar: childSnapshot.val().avatar,
               img: childSnapshot.val().img,
-              timestamp: childSnapshot.val().timestamp
+              timestamp: childSnapshot.val().timestamp,
+              location: childSnapshot.val().location
             };
             this.entries.push(entry);
             this.notifySubscribers();
           });
         });
+
         let settingRef = this.db.ref('/' + this.userID + '/setting');
         settingRef.on('value', snapshot => {
           if (snapshot.val() != null) {
@@ -105,7 +107,8 @@ export class EntryService {
       text: entry.text,
       avatar: entry.avatar,
       img: entry.img,
-      timestamp: Date.now()
+      timestamp: Date.now(),
+      location: entry.location,
     }
     entryRef.set(dataRecord);
     console.log("Added an entry, the list is now: ", this.entries);
@@ -161,6 +164,7 @@ export class EntryService {
                 avatar: newEntry.avatar,
                 img: newEntry.img,
                 timestamp: newEntry.timestamp,
+                location: newEntry.location,
               });
             } else {
               entryRef.set({
@@ -169,6 +173,7 @@ export class EntryService {
                 avatar: newEntry.avatar,
                 img: newEntry.img,
                 timestamp: Date.now(),
+                location: newEntry.location,
               });
             }
           }
