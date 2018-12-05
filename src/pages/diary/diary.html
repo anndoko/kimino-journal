@@ -1,27 +1,41 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>
-      My Diary
-    </ion-title>
+    <ion-item>
+      <ion-title item-star>
+        My Diary
+      </ion-title>
+      <button ion-button clear icon-only item-end>
+        <ion-icon name="settings" color="dark"></ion-icon>
+      </button>
+    </ion-item>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <ion-list>
-    <button ion-button full (click)="addEntry()">Add Entry</button>
-    <ion-item *ngFor="let entry of entries">
-      <ion-thumbnail item-start (click)="viewEntry(entry.id)">
-        <img src={{entry.avatar}}>
-      </ion-thumbnail>
-      <h2 class="title" (click)="viewEntry(entry.id)">{{entry.title}}</h2>
-      <p class="text" (click)="viewEntry(entry.id)">{{entry.text}}</p>
-      <p class="time" (click)="viewEntry(entry.id)">{{entry.timestamp | date: 'short'}}</p>
-      <button ion-button clear icon-only item-end (click)="deleteEntry(entry.id)">
-        <ion-icon name="close-circle" color="dark"></ion-icon>
-      </button>
-      <button ion-button clear icon-only item-end (click)="editEntry(entry.id)">
-        <ion-icon name="create" color="dark"></ion-icon>
-      </button>
-    </ion-item>
-  </ion-list>
+
+    <ion-card *ngFor="let entry of entries">
+      <ion-item>
+        <ion-avatar item-start>
+          <img src={{entry.avatar}}>
+        </ion-avatar>
+        <h2>{{entry.title}}</h2>
+        <p>{{entry.timestamp | date: 'short'}}</p>
+        <button ion-button clear icon-only item-end (click)="deleteEntry(entry.id)">
+          <ion-icon name="close-circle" color="dark"></ion-icon>
+        </button>
+        <button ion-button clear icon-only item-end (click)="editEntry(entry.id)">
+          <ion-icon name="create" color="dark"></ion-icon>
+        </button>
+      </ion-item>
+
+      <img src={{entry.img}} (click)="viewEntry(entry.id)">
+
+      <ion-card-content (click)="viewEntry(entry.id)">
+        <p>{{entry.text}}</p>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-fab right bottom>
+      <button ion-fab color="primary" (click)="addEntry()"><ion-icon name="add"></ion-icon></button>
+    </ion-fab>
 </ion-content>
