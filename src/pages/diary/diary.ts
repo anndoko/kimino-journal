@@ -6,6 +6,7 @@ import { Entry } from '../../model/entry';
 import { EntryService } from "../../providers/entry/entry.service";
 import firebase from 'firebase';
 import { SettingPage } from '../setting/setting';
+import { Platform, ActionSheetController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -18,7 +19,9 @@ export class DiaryPage {
 
   constructor(
     public navCtrl: NavController,
-    private entryDataService: EntryService
+    private entryDataService: EntryService,
+    public platform: Platform,
+    public actionsheetCtrl: ActionSheetController
   ) {
     this.entryDataService.getObservable().subscribe(update => {
       this.entries = entryDataService.getEntries();
