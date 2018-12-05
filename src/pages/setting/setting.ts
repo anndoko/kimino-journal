@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { Setting } from '../../model/entry';
 import { EntryService } from '../../providers/entry/entry.service';
 import { LocalNotifications } from '@ionic-native/local-notifications';
@@ -25,7 +25,8 @@ export class SettingPage {
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private entryDataService: EntryService,
-    public localNotifications: LocalNotifications
+    public localNotifications: LocalNotifications,
+    private toast: ToastController
   ) {
     this.entryDataService.getObservable().subscribe(update => {
       this.setting = entryDataService.getSetting();
@@ -37,14 +38,22 @@ export class SettingPage {
   }
 
 
- scheduleNotification() {
+  scheduleNotification() {
+    if (this.setting.dailyNotification) {
       this.localNotifications.schedule({
         id: 1,
         text: this.message,
         data: 'My hidden message this is',
-        trigger: {at: new Date(new Date().getTime() + parseInt(this.time)*1000)}
+        trigger: { at: new Date(new Date().getTime() + parseInt(this.time) * 1000) }
       });
+    } else {
+      this.toast.create({
+        message: "You haven't activate your notification yet! Please turn it on to receive it!",
+        duration: 1500
+      }).present();
     }
+
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SettingPage');
