@@ -46,9 +46,13 @@
     <ion-item color="secondary">
       <ion-label>Location</ion-label>
     </ion-item>
-    <ion-item *ngIf="entry.location != [0,0]">
-      <ion-icon name="compass"></ion-icon>
-      <ion-label></ion-label>
+    <ion-item>
+      <ion-label>LAT:
+        <p *ngIf="entry.location[0] != 0">{{entry.location[0]}}</p>
+      </ion-label>
+      <ion-label>LONG:
+        <p *ngIf="entry.location[1] != 0">{{entry.location[1]}}</p>
+      </ion-label>
     </ion-item>
     <button ion-button full (click)="getLocation()">Check In</button>
 

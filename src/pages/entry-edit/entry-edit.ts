@@ -103,11 +103,16 @@ export class EntryEditPage {
   // Check in the geolocation
   private getLocation() {
     this.geolocation.getCurrentPosition().then((resp) => {
-      console.log('from get: ');
+      this.toast.create({
+        message: 'Get location successfully!',
+        duration: 1500
+      }).present();
+
+      console.log('get location: ');
       console.log(resp.coords.latitude);
       console.log(resp.coords.longitude);
-      // this.entry.location[0] = resp.coords.latitude;
-      // this.entry.location[1] = resp.coords.longitude;
+      this.entry.location = [resp.coords.latitude, resp.coords.longitude];
+
     }).catch((error) => {
       this.toast.create({
         message: 'Error getting location' + error,
