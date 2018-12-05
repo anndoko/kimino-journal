@@ -31,7 +31,7 @@ export class MyApp {
         this.rootPage = 'LoginPage';
         unsubscribe();
       } else {
-        this.rootPage = 'TabsPage';
+        this.rootPage = 'DiaryPage';
         unsubscribe();
       }
     });
