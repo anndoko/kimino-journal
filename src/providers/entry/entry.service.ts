@@ -126,61 +126,15 @@ export class EntryService {
     let diaryRef = this.db.ref('/' + this.userID + '/entry');
     let entryRef = diaryRef.child(id);
     let newTimestamp = new Date(Date.now());
-    let oldTimestamp = new Date(this.getEntryByID(id).timestamp);
 
-    let alert = this.alertCtrl.create({
-      title: 'Update timestamp?',
-      message: 'Do you want to keep the original timestamp for this entry, or update to the current time?',
-      inputs: [
-        {
-          name: "Keep Origin",
-          type: "radio",
-          value: 'Keep',
-          label: 'Keep (' + oldTimestamp.toLocaleString() + ')',
-          checked: true,
-        },
-        {
-          name: "Update to now",
-          type: "radio",
-          value: 'Update',
-          label: 'Update (' + newTimestamp.toLocaleString() + ')',
-        },
-      ],
-      buttons: [
-        {
-          text: "Cancel",
-          role: "cancel",
-          handler: data => {
-            console.log('Cancel');
-          }
-        },
-        {
-          text: "OK",
-          handler: (data: string) => {
-            if (data === 'Keep') {
-              entryRef.set({
-                title: newEntry.title,
-                text: newEntry.text,
-                avatar: newEntry.avatar,
-                img: newEntry.img,
-                timestamp: newEntry.timestamp,
-                location: newEntry.location,
-              });
-            } else {
-              entryRef.set({
-                title: newEntry.title,
-                text: newEntry.text,
-                avatar: newEntry.avatar,
-                img: newEntry.img,
-                timestamp: Date.now(),
-                location: newEntry.location,
-              });
-            }
-          }
-        },
-      ]
+    entryRef.set({
+      title: newEntry.title,
+      text: newEntry.text,
+      avatar: newEntry.avatar,
+      img: newEntry.img,
+      timestamp: Date.now(),
+      location: newEntry.location,
     });
-    alert.present();
 
     this.notifySubscribers();
   }
