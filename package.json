@@ -71,7 +71,7 @@
         "SENDER_ID": "644969656743",
         "ANDROID_SUPPORT_V13_VERSION": "27.+",
         "FCM_VERSION": "11.6.2"
-
+     },
       "cordova-plugin-geolocation": {
         "GEOLOCATION_USAGE_DESCRIPTION": "Check in your location"
       }
