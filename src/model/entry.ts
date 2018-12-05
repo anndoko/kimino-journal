@@ -5,6 +5,7 @@ export class Entry {
   img: string;
   avatar: string;
   timestamp: any;
+  location: Array<number>;
 }
 
 export class Setting {

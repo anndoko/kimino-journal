@@ -8,8 +8,7 @@
 
 <ion-content padding>
   <ion-list>
-      <button ion-button full (click)="addEntry()">Add Entry</button>
-      <button ion-button (click)="goToSetting()">Setting</button>  
+    <button ion-button full (click)="addEntry()">Add Entry</button>
     <ion-item *ngFor="let entry of entries">
       <ion-thumbnail item-start (click)="viewEntry(entry.id)">
         <img src={{entry.avatar}}>
