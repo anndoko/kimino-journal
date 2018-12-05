@@ -17,13 +17,13 @@ export class TabsPage {
 
   tab1Root: string;
   tab2Root: string;
-  tab3Root: string;
+  // tab3Root: string;
 
   constructor() {
 
   this.tab1Root = 'DiaryPage';
-  this.tab2Root = 'EntryEditPage';
-  this.tab3Root = 'SettingPage';
+  // this.tab2Root = 'EntryEditPage';
+  this.tab2Root = 'SettingPage';
 
   }
 }
