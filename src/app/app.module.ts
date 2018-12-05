@@ -9,7 +9,7 @@ import { FIREBASE_CONFIG } from './app.firebase.config';
 
 import { AuthService } from '../providers/auth/auth.service';
 import { EntryService } from '../providers/entry/entry.service';
-import { Push, PushObject, PushOptions } from '@ionic-native/push';
+
 import { MyApp } from './app.component';
 import { EntryDetailPage } from '../pages/entry-detail/entry-detail';
 import { EntryEditPage } from '../pages/entry-edit/entry-edit'
@@ -49,7 +49,6 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     AuthService,
     EntryService,
-    Push,
     Geolocation,
     LocalNotifications
   ]
