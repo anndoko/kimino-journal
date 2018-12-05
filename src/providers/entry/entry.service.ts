@@ -133,7 +133,7 @@ export class EntryService {
       avatar: newEntry.avatar,
       img: newEntry.img,
       timestamp: Date.now(),
-      location: newEntry.location,
+      location: newEntry.location
     });
 
     this.notifySubscribers();
