@@ -14,3 +14,31 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+button {
+  color: white !important;
+}
+
+ion-label {
+  margin-left: 20px;
+  color: grey;
+  font-weight: bold;
+  font-size: 16px;
+  text-transform: capitalize;
+}
+
+ion-input {
+  font-size: 14px;
+}
+
+ion-textarea {
+  font-size: 14px;
+}
+
+ion-card, .card-ios, .card-md {
+  margin-bottom: 24px;
+}
+
+ion-icon .settings {
+  color: white !important;
+}

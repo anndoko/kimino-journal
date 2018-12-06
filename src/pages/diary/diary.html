@@ -1,13 +1,11 @@
 <ion-header>
-  <ion-navbar>
-    <ion-item>
-      <ion-title item-star>
-        My Diary
-      </ion-title>
+  <ion-navbar color="primary">
+    <ion-title>Our Diary</ion-title>
+    <ion-fab right top>
       <button ion-button clear icon-only item-end (click)="goToSetting()">
-        <ion-icon name="settings" color="dark"></ion-icon>
+        <ion-icon name="settings" color="white"></ion-icon>
       </button>
-    </ion-item>
+    </ion-fab>
   </ion-navbar>
 </ion-header>
 
@@ -28,7 +26,10 @@
         </button>
       </ion-item>
 
-      <img src={{entry.img}} (click)="viewEntry(entry.id)">
+
+      <div *ngIf="entry.img !='/assets/imgs/placeholder.png'">
+        <img src={{entry.img}} (click)="viewEntry(entry.id)">
+      </div>
 
       <ion-card-content (click)="viewEntry(entry.id)">
         <p>{{entry.text}}</p>
@@ -38,4 +39,5 @@
     <ion-fab right bottom>
       <button ion-fab color="primary" (click)="addEntry()"><ion-icon name="add"></ion-icon></button>
     </ion-fab>
+
 </ion-content>
