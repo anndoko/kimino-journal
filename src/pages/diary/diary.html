@@ -30,12 +30,15 @@
       <img src={{entry.img}} (click)="viewEntry(entry.id)">
     </div>
 
+
     <ion-card-content (click)="viewEntry(entry.id)">
       <p>{{entry.text}}</p>
     </ion-card-content>
   </ion-card>
 
-    <ion-fab right bottom>
-      <button ion-fab color="primary" (click)="addEntry()"><ion-icon name="add"></ion-icon></button>
-    </ion-fab>
+  <ion-fab right bottom>
+    <button ion-fab color="primary" (click)="addEntry()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
 </ion-content>
