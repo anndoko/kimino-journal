@@ -4,8 +4,11 @@
 </ion-header>
 
 <ion-content padding>
-  <img width="50" height="50" src={{entry.avatar}}>
-  <h2>{{entry.title}}</h2>
+  <ion-item>
+    <img width="50" height="50" src={{entry.avatar}}>
+    <h2>{{entry.title}}</h2>
+  </ion-item>
+
   <p>{{entry.text}}</p>
   <!-- I know this sucks, I will fix it -->
   <p style="font-size: 80%;">{{entry.location}}</p>
