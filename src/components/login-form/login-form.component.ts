@@ -31,8 +31,8 @@ export class LoginFormComponent {
     this.loginStatus.emit(loginResponse);
   }
 
-  navigateToRegisterPage() {
-    this.navCtrl.push('RegisterPage');
-  }
+  // navigateToRegisterPage() {
+  //   this.navCtrl.push('RegisterPage');
+  // }
 
 }
