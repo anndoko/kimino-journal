@@ -19,8 +19,8 @@ export class SettingPage {
   private setting: any;
   private username: string;
 
-  message: string = "";
-  time: string = "";
+  message: string = "WRITE DIARY!!!";
+  time: string = "2";
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
