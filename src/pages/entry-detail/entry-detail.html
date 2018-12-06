@@ -1,17 +1,16 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      {{entry.title}}
-    </ion-title>
+  <ion-navbar color="primary">
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
   <img width="50" height="50" src={{entry.avatar}}>
+  <h2>{{entry.title}}</h2>
   <p>{{entry.text}}</p>
   <!-- I know this sucks, I will fix it -->
   <p style="font-size: 80%;">{{entry.location}}</p>
   <p>{{entry.timestamp | date: 'short'}}</p>
-
-  <img *ngIf="entry.img != ''" src={{entry.img}}>
+  <div *ngIf="entry.img !='/assets/imgs/placeholder.png'">
+    <img src={{entry.img}}>
+  </div>
 </ion-content>

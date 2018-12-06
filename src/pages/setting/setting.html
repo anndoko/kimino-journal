@@ -1,27 +1,18 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>setting</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>Settings</ion-title>
   </ion-navbar>
 </ion-header>
 
-
 <ion-content padding>
-  <ion-list no-border>
+  <ion-list  no-lines>
     <ion-list-header>
       Diary Account
     </ion-list-header>
-
-    <ion-item>
-      <ion-label>
-        {{ this.username }}
-      </ion-label>
-      <ion-label>
-        <button ion-button (click)="logOut()">Log out</button>
-      </ion-label>
-    </ion-item>
+    <ion-item>{{ this.username }}</ion-item>
   </ion-list>
 
-  <ion-list>
+  <ion-list  no-lines>
     <ion-list-header>
       Notification
     </ion-list-header>
