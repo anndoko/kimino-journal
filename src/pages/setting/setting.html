@@ -19,7 +19,7 @@
     <ion-item>
       <ion-toggle [checked]="this.setting.dailyNotification" (ionChange)="toggleSettingDaily($event._value)"></ion-toggle>
       <ion-label>
-        <h2>Daily Reminder</h2>
+        <h2>Daily Reminder (Demo)</h2>
         <p>Remind me to write a dairy every day</p>
       </ion-label>
     </ion-item>
@@ -27,8 +27,18 @@
       <ion-toggle [checked]="this.setting.regularNotification" (ionChange)="toggleSettingRegular($event._value)"></ion-toggle>
       <ion-label>
         <h2>Regular Reminder</h2>
-        <p>Remind me to write a dairy every X day</p>
+        <p>Remind me to write a dairy every week</p>
       </ion-label>
     </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-list-header>
+      Notification Demo
+    </ion-list-header>
+
+
+    <button ion-button (click)="scheduleNotification()">Demo</button>
+
   </ion-list>
 </ion-content>

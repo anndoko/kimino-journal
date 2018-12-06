@@ -11,32 +11,31 @@
 
 <ion-content padding>
 
-    <ion-card *ngFor="let entry of entries">
-      <ion-item>
-        <ion-avatar item-start>
-          <img src={{entry.avatar}}>
-        </ion-avatar>
-        <h2>{{entry.title}}</h2>
-        <p>{{entry.timestamp | date: 'short'}}</p>
-        <button ion-button clear icon-only item-end (click)="deleteEntry(entry.id)">
-          <ion-icon name="close-circle" color="dark"></ion-icon>
-        </button>
-        <button ion-button clear icon-only item-end (click)="editEntry(entry.id)">
-          <ion-icon name="create" color="dark"></ion-icon>
-        </button>
-      </ion-item>
+  <ion-card *ngFor="let entry of entries">
+    <ion-item>
+      <ion-avatar item-start>
+        <img src={{entry.avatar}}>
+      </ion-avatar>
+      <h2>{{entry.title}}</h2>
+      <p>{{entry.timestamp | date: 'short'}}</p>
+      <button ion-button clear icon-only item-end (click)="deleteEntry(entry.id)">
+        <ion-icon name="close-circle" color="dark"></ion-icon>
+      </button>
+      <button ion-button clear icon-only item-end (click)="editEntry(entry.id)">
+        <ion-icon name="create" color="dark"></ion-icon>
+      </button>
+    </ion-item>
 
-      <div *ngIf="entry.img !='/assets/imgs/placeholder.png'">
-        <img src={{entry.img}} (click)="viewEntry(entry.id)">
-      </div>
+    <div *ngIf="entry.img !='/assets/imgs/placeholder.png'">
+      <img src={{entry.img}} (click)="viewEntry(entry.id)">
+    </div>
 
-      <ion-card-content (click)="viewEntry(entry.id)">
-        <p>{{entry.text}}</p>
-      </ion-card-content>
-    </ion-card>
+    <ion-card-content (click)="viewEntry(entry.id)">
+      <p>{{entry.text}}</p>
+    </ion-card-content>
+  </ion-card>
 
     <ion-fab right bottom>
       <button ion-fab color="primary" (click)="addEntry()"><ion-icon name="add"></ion-icon></button>
     </ion-fab>
-
 </ion-content>

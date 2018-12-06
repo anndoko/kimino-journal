@@ -4,9 +4,9 @@ import { EntryEditPage } from '../entry-edit/entry-edit';
 import { EntryDetailPage } from '../entry-detail/entry-detail';
 import { Entry } from '../../model/entry';
 import { EntryService } from "../../providers/entry/entry.service";
-import firebase from 'firebase';
 import { SettingPage } from '../setting/setting';
 import { Platform, ActionSheetController } from 'ionic-angular';
+import { LoadingController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -21,8 +21,16 @@ export class DiaryPage {
     public navCtrl: NavController,
     private entryDataService: EntryService,
     public platform: Platform,
-    public actionsheetCtrl: ActionSheetController
+    public actionsheetCtrl: ActionSheetController,
+    public loadingCtrl: LoadingController
   ) {
+    const loader = this.loadingCtrl.create({
+      content: "Please wait...",
+      duration: 1500
+    });
+
+    loader.present();
+
     this.entryDataService.getObservable().subscribe(update => {
       this.entries = entryDataService.getEntries();
     });

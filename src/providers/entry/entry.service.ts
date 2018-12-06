@@ -92,7 +92,8 @@ export class EntryService {
   }
 
   public getSetting(): Setting[] {
-
+    console.log('getting setting from service');
+    console.log(this.setting);
     let settingClone = JSON.parse(JSON.stringify(this.setting));
     console.log("getSetting!!!!!", settingClone);
 

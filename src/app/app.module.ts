@@ -9,7 +9,7 @@ import { FIREBASE_CONFIG } from './app.firebase.config';
 
 import { AuthService } from '../providers/auth/auth.service';
 import { EntryService } from '../providers/entry/entry.service';
-import { Push, PushObject, PushOptions } from '@ionic-native/push';
+
 import { MyApp } from './app.component';
 import { EntryDetailPage } from '../pages/entry-detail/entry-detail';
 import { EntryEditPage } from '../pages/entry-edit/entry-edit'
@@ -18,6 +18,7 @@ import { SettingPageModule } from '../pages/setting/setting.module';
 import { EntryEditPageModule } from '../pages/entry-edit/entry-edit.module';
 import { Camera } from '@ionic-native/camera';
 import { Geolocation } from '@ionic-native/geolocation';
+import { LocalNotifications } from '@ionic-native/local-notifications';
 
 @NgModule({
   declarations: [
@@ -48,8 +49,8 @@ import { Geolocation } from '@ionic-native/geolocation';
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     AuthService,
     EntryService,
-    Push,
-    Geolocation
+    Geolocation,
+    LocalNotifications
   ]
 })
 export class AppModule { }

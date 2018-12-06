@@ -1,7 +1,14 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { Setting } from '../../model/entry';
 import { EntryService } from '../../providers/entry/entry.service';
+import { LocalNotifications } from '@ionic-native/local-notifications';
+/**
+ * Generated class for the SettingPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
 
 @IonicPage()
 @Component({
@@ -12,9 +19,14 @@ export class SettingPage {
   private setting: any;
   private username: string;
 
+  message: string = "WRITE DIARY!!!";
+  time: string = "2";
+
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
-    private entryDataService: EntryService
+    private entryDataService: EntryService,
+    public localNotifications: LocalNotifications,
+    private toast: ToastController
   ) {
     this.entryDataService.getObservable().subscribe(update => {
       this.setting = entryDataService.getSetting();
@@ -22,6 +34,24 @@ export class SettingPage {
     });
     this.setting = this.entryDataService.getSetting();
     this.username = entryDataService.getUserName();
+
+  }
+
+
+  scheduleNotification() {
+    if (this.setting.dailyNotification) {
+      this.localNotifications.schedule({
+        id: 1,
+        text: this.message,
+        data: 'My hidden message this is',
+        trigger: { at: new Date(new Date().getTime() + parseInt(this.time) * 1000) }
+      });
+    } else {
+      this.toast.create({
+        message: "You haven't activate your notification yet! Please turn it on to receive it!",
+        duration: 1500
+      }).present();
+    }
 
   }
 
