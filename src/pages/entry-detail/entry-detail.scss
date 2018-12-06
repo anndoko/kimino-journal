@@ -1,3 +1,35 @@
 page-entry-detail {
 
+  h2 {
+    text-align: center;
+  }
+
+  img {
+    margin: 24px auto;
+    border-radius: 10px;
+    display: block;
+  }
+
+  .details {
+    color: grey;
+    text-align: center;
+    font-size: 14px;
+
+    p {
+      margin: 0px;
+      margin-left: 64px;
+      text-align: left;
+      line-height: 50%;
+    }
+
+    ion-icon {
+      margin-right: 8px;
+    }
+  }
+
+  p {
+    margin-top: 24px;
+    padding: 8px 10%;
+  }
+
 }
