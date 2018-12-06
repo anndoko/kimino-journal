@@ -20,7 +20,7 @@ export class LoginPage {
         message: 'Welcome',
         duration: 3000
       }).present();
-      this.navCtrl.setRoot('TabsPage');
+      this.navCtrl.setRoot('DiaryPage');
     }
     else {
       this.toast.create({

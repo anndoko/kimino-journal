@@ -27,6 +27,8 @@ export class RegisterPage {
         message: 'Account created',
         duration: 3000
       }).present();
+      this.navCtrl.setRoot('DiaryPage');
+
     }
     else {
       this.toast.create({
